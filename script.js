@@ -45,7 +45,7 @@ const CONFIG = {
     ],
 
     // 6. MEME CUANDO SE LOGRA PRESIONAR "NO" EN EL JUEGO
-    memeNoImagen: "img/meme-no.jpg",
+    memeNoImagen: "Img/deta/meme.jpg",
 
     // 7. PREGUNTAS DEL JUEGO "SI FUERA..."
     preguntasIfGame: [
@@ -487,7 +487,7 @@ function answerIfGame(isYes) {
     } else {
         resultDiv.innerHTML = `
             <p style="font-weight:bold;">¡Qué mala! Me dejas plantado en mi versión alternativa 💔😂</p>
-            <img class="meme-img" src="${currentQ.meme}" onerror="this.src='https://placehold.co/300x200?text=Reacci%C3%B3n+Meme'" alt="Meme Reacción">
+            <img class="meme-img" src="${currentQ.meme}" onerror="this.src='Img/deta/meme.jpg'" alt="Meme Reacción">
             <br>
             <button onclick="nextIfQuestion()" class="btn-romantic" style="padding:5px 15px; font-size:0.9rem; margin-top:10px;">Siguiente pregunta</button>
         `;
