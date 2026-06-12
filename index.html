@@ -1,673 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Para Ti ❤️</title>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Dancing+Script:wght@700&display=swap');
-
-  :root{
-    --bg1:#ff758c;
-    --bg2:#ff7eb3;
-    --bg3:#ffc3a0;
-    --glass:rgba(255,255,255,.14);
-    --glass-strong:rgba(255,255,255,.20);
-    --text:#fff;
-    --soft:#fff3f7;
-    --gold:#fff2a8;
-    --shadow:0 14px 40px rgba(0,0,0,.18);
-    --radius:28px;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-
-  html{scroll-behavior:smooth;}
-
-  body{
-    font-family:'Poppins',sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(circle at top left, rgba(255,255,255,.18) 0 10%, transparent 11%),
-      radial-gradient(circle at bottom right, rgba(255,255,255,.12) 0 8%, transparent 9%),
-      linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-    min-height:100vh;
-    padding:22px;
-    overflow-x:hidden;
-  }
-
-  .container{
-    max-width:1100px;
-    margin:auto;
-    background:var(--glass);
-    backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:34px;
-    box-shadow:var(--shadow);
-    padding:24px;
-    position:relative;
-  }
-
-  .topbar{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    margin-bottom:18px;
-  }
-
-  .title-wrap h1{
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(2.5rem,5vw,4.2rem);
-    line-height:1;
-    margin-bottom:6px;
-  }
-
-  .title-wrap p{
-    color:rgba(255,255,255,.92);
-    font-size:.98rem;
-  }
-
-  .music-btn{
-    border:none;
-    padding:12px 18px;
-    border-radius:999px;
-    font-weight:700;
-    cursor:pointer;
-    background:rgba(255,255,255,.22);
-    color:#fff;
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-    transition:.25s ease;
-  }
-
-  .music-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.30);}
-
-  .hero{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:18px;
-    margin-top:18px;
-  }
-
-  .card{
-    background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:var(--radius);
-    box-shadow:0 10px 26px rgba(0,0,0,.12);
-  }
-
-  .message{
-    padding:24px;
-  }
-
-  .message h2,
-  .section-title,
-  .time-title,
-  .gallery-title{
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(2rem,3vw,2.7rem);
-    margin-bottom:12px;
-  }
-
-  .message p{
-    margin-bottom:14px;
-    line-height:1.85;
-    color:rgba(255,255,255,.96);
-  }
-
-  .highlight{color:var(--gold);font-weight:700;}
-
-  .aside{
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    justify-content:center;
-  }
-
-  .mini-note{
-    background:rgba(255,255,255,.12);
-    border-radius:22px;
-    padding:16px;
-  }
-
-  .mini-note h3{
-    margin-bottom:8px;
-    font-size:1rem;
-  }
-
-  .mini-note p{
-    line-height:1.7;
-    font-size:.95rem;
-    color:rgba(255,255,255,.95);
-  }
-
-  .time-section,
-  .months-section,
-  .gallery-section,
-  .letter-section{
-    margin-top:22px;
-  }
-
-  .time-title,
-  .gallery-title{
-    text-align:center;
-    margin-bottom:12px;
-  }
-
-  .timebox{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-  }
-
-  .unit{
-    padding:18px 12px;
-    border-radius:22px;
-    background:rgba(255,255,255,.16);
-    text-align:center;
-  }
-
-  .icon{font-size:1.7rem;margin-bottom:6px;}
-  .num{font-size:1.8rem;font-weight:700;}
-  .label{font-size:.95rem;opacity:.95;}
-
-  .month-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-  }
-
-  .month{
-    padding:18px;
-  }
-
-  .month-head{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    align-items:flex-start;
-    margin-bottom:12px;
-  }
-
-  .month-title{
-    font-size:1.3rem;
-    font-weight:700;
-  }
-
-  .month-badge{
-    font-size:.82rem;
-    background:rgba(255,255,255,.18);
-    padding:8px 12px;
-    border-radius:999px;
-    white-space:nowrap;
-  }
-
-  .month p{
-    color:rgba(255,255,255,.95);
-    line-height:1.7;
-    margin-bottom:12px;
-  }
-
-  .month-list{
-    margin-left:18px;
-    color:rgba(255,255,255,.96);
-    line-height:1.75;
-  }
-
-  .photo-frame{
-    margin-top:14px;
-    border-radius:20px;
-    overflow:hidden;
-    border:2px solid rgba(255,255,255,.20);
-    background:rgba(255,255,255,.12);
-  }
-
-  .photo-frame img{
-    display:block;
-    width:100%;
-    height:290px;
-    object-fit:cover;
-  }
-
-  .photo-caption{
-    padding:12px 14px;
-    font-size:.92rem;
-    color:rgba(255,255,255,.95);
-  }
-
-  .month-placeholder{
-    border:1.5px dashed rgba(255,255,255,.45);
-    border-radius:20px;
-    padding:18px;
-    background:rgba(255,255,255,.10);
-    min-height:290px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-  }
-
-  .month-placeholder strong{display:block;font-size:1.15rem;margin-bottom:8px;}
-
-  .add-more{
-    text-align:center;
-    margin-top:16px;
-    color:rgba(255,255,255,.95);
-    font-size:.96rem;
-  }
-
-.slider {
-  position: relative;
-  max-width: 560px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 26px;
-  padding: 8px;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,.22),
-    rgba(255,255,255,.08)
-  );
-}
-
-.slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slides img {
-  width: 100%;
-  flex-shrink: 0;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 18px;
-}
-
-.btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,.45);
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  cursor: pointer;
-  border-radius: 12px;
-  font-size: 28px;
-  z-index: 10;
-}
-
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
-}
-
-.btn:hover {
-  background: rgba(0,0,0,.7);
-}
-
-@media(max-width:600px){
-  .slides img{
-    height:260px;
-  }
-}
-
-  .letter{
-    padding:22px;
-  }
-
-  .letter-box{
-    background:rgba(255,255,255,.15);
-    border-radius:24px;
-    padding:20px;
-    line-height:1.8;
-    color:rgba(255,255,255,.96);
-  }
-
-  .letter-box .sign{
-    margin-top:14px;
-    text-align:right;
-    font-family:'Dancing Script',cursive;
-    font-size:1.7rem;
-  }
-
-  .footer-note{
-    text-align:center;
-    margin-top:18px;
-    font-size:.95rem;
-    color:rgba(255,255,255,.92);
-  }
-
-  .floating-hearts span{
-    position:absolute;
-    font-size:18px;
-    opacity:.35;
-    animation:float 10s linear infinite;
-    pointer-events:none;
-  }
-
-  @keyframes float{
-    0%{transform:translateY(0) translateX(0) rotate(0deg);}
-    100%{transform:translateY(-1200px) translateX(50px) rotate(360deg);}
-  }
-
-  @media(max-width:900px){
-    .hero,
-    .month-grid{grid-template-columns:1fr;}
-    .slides img{height:300px;}
-    .timebox{grid-template-columns:repeat(2,1fr);}
-  }
-
-  @media(max-width:600px){
-    body{padding:12px;}
-    .container{padding:16px;border-radius:26px;}
-    .slides img{height:250px;}
-    .timebox{grid-template-columns:1fr 1fr;}
-    .month-head{flex-direction:column;align-items:flex-start;}
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia ❤️ Sara & Pool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
 
-    <div class="floating-hearts" aria-hidden="true">
-      <span style="left:6%;bottom:-20px;animation-duration:12s;">💗</span>
-      <span style="left:18%;bottom:-40px;animation-duration:15s;">💕</span>
-      <span style="left:35%;bottom:-10px;animation-duration:13s;">💖</span>
-      <span style="left:52%;bottom:-30px;animation-duration:16s;">💘</span>
-      <span style="left:70%;bottom:-20px;animation-duration:14s;">❤️</span>
-      <span style="left:88%;bottom:-35px;animation-duration:17s;">💞</span>
-    </div>
+    <div id="heart-rain-container"></div>
 
-    <!-- TITULO -->
-    <div class="topbar">
-      <div class="title-wrap">
-        <h1>Para Ti ❤️</h1>
-        <p>Un espacio donde guardar cada mes, cada recuerdo y cada pedacito de nuestro amor.</p>
-      </div>
-
-      <button class="music-btn" id="musicBtn">▶ Reproducir música</button>
-    </div>
-
-    <!-- MUSICA -->
-    <audio id="bgMusic" loop>
-      <source src="Music.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- PALABRAS ROMANTICAS -->
-    <section class="card message">
-      <h2>💌 Unas palabras para ti</h2>
-
-      <p>Desde que llegaste a mi vida todo se siente más bonito, más tranquilo y más especial.</p>
-
-      <p>Me encanta compartir momentos contigo, reírnos por tonterías, abrazarte y sentir que contigo puedo ser completamente yo.</p>
-
-      <p>Quiero seguir creando recuerdos contigo, seguir creciendo juntos y llenar nuestra historia de más fotos, más cartas y más momentos inolvidables. ❤️</p>
-
-      <p style="text-align:center;font-weight:bold;margin-top:20px;">
-        Gracias por existir y por hacerme tan feliz 💖
-      </p>
+    <section id="welcome-screen" class="active">
+        <div class="welcome-content">
+            <h1 class="main-title">Pool <span class="heart-pulse">❤️</span> Sara</h1>
+            <p class="subtitle">Nuestra historia de amor</p>
+            <button id="btn-enter" class="btn-romantic">Entrar a nuestro álbum</button>
+        </div>
     </section>
 
-    <!-- TIEMPO JUNTOS -->
-    <section class="time-section">
-      <h2 class="time-title">⏳ Tiempo Juntos</h2>
+    <main id="main-content" class="hidden">
+        
+        <nav class="navbar">
+            <div class="nav-logo">P & S ❤️</div>
+            <ul class="nav-links">
+                <li><a href="#timeline-section">Historia</a></li>
+                <li><a href="#album-section">Meses</a></li>
+                <li><a href="#music-section">Canciones</a></li>
+                <li><a href="#envelopes-section">Sorpresas</a></li>
+                <li><a href="#games-section">Juegos</a></li>
+                <li><a href="#recuerdos-section">Muro</a></li>
+            </ul>
+        </nav>
 
-      <div class="timebox">
-        <div class="unit">
-          <div class="icon">📅</div>
-          <div class="num" id="dias">0</div>
-          <div class="label">Días</div>
-        </div>
-
-        <div class="unit">
-          <div class="icon">⏰</div>
-          <div class="num" id="horas">0</div>
-          <div class="label">Horas</div>
-        </div>
-
-        <div class="unit">
-          <div class="icon">💬</div>
-          <div class="num" id="minutos">0</div>
-          <div class="label">Minutos</div>
-        </div>
-
-        <div class="unit">
-          <div class="icon">⚡</div>
-          <div class="num" id="segundos">0</div>
-          <div class="label">Segundos</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RECUERDOS -->
-    <section class="months-section">
-      <h2 class="section-title" style="text-align:center;">💞 Nuestros recuerdos y promesas</h2>
-
-      <div class="month-grid">
-
-        <!-- MES 1 -->
-        <article class="card month">
-
-          <div class="month-head">
-            <div>
-              <div class="month-title">🌸 Primer Mes</div>
-              <div style="opacity:.9;margin-top:4px;">El inicio de nuestra historia.</div>
+        <section id="counter-section" class="scroll-anim">
+            <h2>Llevamos juntos:</h2>
+            <div class="counter-container">
+                <div class="counter-box"><span id="count-months">00</span><p>Meses</p></div>
+                <div class="counter-box"><span id="count-days">00</span><p>Días</p></div>
+                <div class="counter-box"><span id="count-hours">00</span><p>Horas</p></div>
+                <div class="counter-box"><span id="count-minutes">00</span><p>Minutos</p></div>
+                <div class="counter-box"><span id="count-seconds">00</span><p>Segundos</p></div>
             </div>
+        </section>
 
-            <div class="month-badge">Mes 1 ❤️</div>
-          </div>
+        <section id="timeline-section" class="scroll-anim">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="timeline" id="timeline-container">
+                </div>
+        </section>
 
-          <p>
-            Este primer mes estuvo lleno de emociones bonitas, momentos especiales y recuerdos que nunca quiero olvidar.
-          </p>
+        <section id="album-section" class="scroll-anim">
+            <h2 class="section-title">Nuestros Meses Juntos</h2>
+            <div class="month-cards-container">
+                <div class="month-card" onclick="openLightboxMonth(1)">
+                    <div class="card-heart">❤️</div>
+                    <h3>Mes 1</h3>
+                    <p>El inicio de todo...</p>
+                </div>
+                <div class="month-card" onclick="openLightboxMonth(2)">
+                    <div class="card-heart">❤️</div>
+                    <h3>Mes 2</h3>
+                    <p>Haciéndonos más fuertes.</p>
+                </div>
+                <div class="month-card" onclick="openLightboxMonth(3)">
+                    <div class="card-heart">❤️</div>
+                    <h3>Mes 3</h3>
+                    <p>Tres meses de pura felicidad.</p>
+                </div>
+            </div>
+        </section>
 
-          <ul class="month-list">
-            <li>Nuestras primeras conversaciones especiales.</li>
-            <li>Las primeras risas juntos.</li>
-            <li>Los abrazos y momentos que hicieron todo más bonito.</li>
-            <li>La promesa de seguir juntos creando recuerdos.</li>
-          </ul>
-
-          <!-- FOTOS MES 1 -->
- <section class="gallery-section">
-      <h2 class="gallery-title">📸 Recuerdos ❤️</h2>
-
-      <div class="slider">
-        <button class="btn prev" onclick="moveSlide(-1)">❮</button>
-
-        <div class="slides" id="slides">
-          <img src="/1erMonth/foto1.jpeg">
-          <img src="/1erMonth/foto2.jpeg">
-          <img src="/1erMonth/foto3.jpeg">
-          <img src="/1erMonth/foto4.jpeg">
-          <img src="/1erMonth/foto6.jpeg">
+        <div id="album-lightbox" class="lightbox hidden">
+            <span class="close-lightbox" onclick="closeLightboxMonth()">&times;</span>
+            <div class="lightbox-content">
+                <div class="letter-box">
+                    <h3>Nuestra Carta ✨</h3>
+                    <p id="lightbox-letter-text"></p>
+                </div>
+                <hr class="divider">
+                <h3>Recuerdos del Mes</h3>
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                    <div class="carousel-slide" id="carousel-images">
+                        </div>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+                </div>
+            </div>
         </div>
 
-        <button class="btn next" onclick="moveSlide(1)">❯</button>
-      </div>
-    </section>
-
-          <!-- CARTA -->
-          <div class="letter-box" style="margin-top:18px;">
-            <h3 style="margin-bottom:10px;">💌 Carta del Primer Mes</h3>
-
-            <p>
-              Gracias por llegar a mi vida y convertir días normales en momentos especiales. Este primer mes contigo ha sido uno de los más bonitos que he vivido.
-            </p>
-
-            <p>
-              Quiero seguir descubriendo más de ti, seguir compartiendo risas, abrazos y cada pequeño instante que haga crecer nuestra historia.
-            </p>
-
-            <div class="sign">Con muchísimo cariño ❤️</div>
-          </div>
-        </article>
-
-        <!-- MES 2 -->
-        <article class="card month">
-
-          <div class="month-head">
-            <div>
-              <div class="month-title">🌷 Segundo Mes</div>
-              <div style="opacity:.9;margin-top:4px;">Tu espacio para agregar más recuerdos.</div>
+        <section id="music-section" class="scroll-anim">
+            <h2 class="section-title">Nuestras canciones 🎵</h2>
+            <div class="player-container">
+                <div class="player-info">
+                    <h4 id="track-title">Título de la Canción</h4>
+                    <span id="track-time">0:00 / 0:00</span>
+                </div>
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="player-controls">
+                    <button id="player-prev" class="player-btn"><i class="fas fa-backward"></i></button>
+                    <button id="player-play" class="player-btn play-main"><i class="fas fa-play"></i></button>
+                    <button id="player-next" class="player-btn"><i class="fas fa-forward"></i></button>
+                </div>
+                <div class="volume-container">
+                    <i class="fas fa-volume-down"></i>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <audio id="main-audio" src=""></audio>
             </div>
+        </section>
 
-            <div class="month-badge">Mes 2 💕</div>
-          </div>
+        <section id="envelopes-section" class="scroll-anim">
+            <h2 class="section-title">Sobres Sorpresa ✨</h2>
+            <div class="envelopes-grid" id="envelopes-container">
+                </div>
+        </section>
 
-          <p>
-            Aquí podrás escribir todo lo bonito que pase en su segundo mes juntos.
-          </p>
+        <div id="surprise-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeSurpriseModal()">&times;</span>
+                <div class="letter-paper">
+                    <p id="surprise-modal-text"></p>
+                </div>
+            </div>
+        </div>
 
-          <ul class="month-list">
-            <li>Agregar nuevas promesas.</li>
-            <li>Contar momentos especiales.</li>
-            <li>Agregar más fotos juntos.</li>
-            <li>Escribir otra carta romántica.</li>
-          </ul>
+        <section id="games-section" class="scroll-anim">
+            <h2 class="section-title">Zona de Juegos ❤️</h2>
+            
+            <div class="games-wrapper">
+                <div class="game-card">
+                    <h3>¿Me quieres? ❤️</h3>
+                    <p id="love-game-hint">Responde con total honestidad...</p>
+                    <div class="game-buttons-space" id="love-game-space">
+                        <button id="btn-love-yes" class="game-btn yes">SÍ</button>
+                        <button id="btn-love-no" class="game-btn no">NO</button>
+                    </div>
+                    <div id="love-game-result" class="hidden">
+                        </div>
+                </div>
 
-          <!-- ESPACIO PARA FOTOS -->
-          <section class="gallery-section">
-  <h2 class="gallery-title">📸 Recuerdos ❤️</h2>
+                <div class="game-card">
+                    <h3>¿Si fuera...? 🥺</h3>
+                    <div id="if-game-content">
+                        <p id="if-game-question">Cargando pregunta...</p>
+                        <div class="game-buttons-space">
+                            <button onclick="answerIfGame(true)" class="game-btn yes">❤️ Sí</button>
+                            <button onclick="answerIfGame(false)" class="game-btn no">💔 No</button>
+                        </div>
+                    </div>
+                    <div id="if-game-result" class="hidden"></div>
+                </div>
+            </div>
+        </section>
 
-  <div class="slider">
-    <button class="btn prev" onclick="moveSlide1(-1)">❮</button>
+        <section id="recuerdos-section" class="scroll-anim">
+            <h2 class="section-title">Muro de Recuerdos</h2>
+            <div class="muro-grid" id="muro-container">
+                </div>
+        </section>
 
-    <div class="slides" id="slides1">
-      <img src="/2doMonth/Foto1.jpeg">
-      <img src="/2doMonth/Foto1-1.jpg">
-      <img src="/2doMonth/Foto2.jpeg">
-      <img src="/2doMonth/Foto2-1.jpg">
-      <img src="/2doMonth/Foto3.jpeg">
-      <img src="/2doMonth/Foto4.jpeg">
-      <img src="/2doMonth/Foto5.jpeg">
-      <img src="/2doMonth/Foto6.jpg">
-      <img src="/2doMonth/Foto7.jpeg">
-    </div>
+        <section id="final-section" class="scroll-anim">
+            <div class="final-box">
+                <h2 id="typewriter-text"></h2>
+                <div class="fireworks-fallback">✨ 💖 ✨</div>
+            </div>
+        </section>
 
-    <button class="btn next" onclick="moveSlide1(1)">❯</button>
-  </div>
-</section>
+    </main>
 
-          <!-- CARTA SEGUNDO MES -->
-          <div class="letter-box" style="margin-top:18px;">
-            <h3 style="margin-bottom:10px;">💌 Carta del Segundo Mes</h3>
-
-            <p>Dos meses contigo y todavía me cuesta creer lo bonito que se siente tenerte en mi vida. ❤️
-
-Contigo encontré tranquilidad, cariño y una conexión que no había sentido antes. Me gusta cómo me haces sentir, cómo me escuchas y cómo incluso los momentos simples contigo terminan siendo especiales.
-
-Gracias por dejarme compartir parte de tu vida conmigo. De verdad quiero seguir construyendo recuerdos a tu lado y que esto tan bonito siga creciendo cada día más. 💖
-
-
-            </p>
-
-            <div class="sign">Tu niño 💖</div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- GALERIA GENERAL -->
-    <section class="gallery-section">
-  <h2 class="gallery-title">📸 La que Me fascina! ❤️</h2>
-
-  <div class="slider">
-    <button class="btn prev" onclick="moveSlide2(-1)">❮</button>
-
-    <div class="slides" id="slides2">
-      <img src="/AllFhotos/Foto1.jpeg">
-      <img src="/AllFhotos/Foto2.jpeg">
-    
-    </div>
-
-    <button class="btn next" onclick="moveSlide2(1)">❯</button>
-  </div>
-</section>
-  </div>
-
-<script>
-  // ===== SLIDER 1 =====
-  let index = 0;
-  const slides = document.getElementById("slides");
-  const total = slides.children.length;
-
-  function moveSlide(step){
-    index = (index + step + total) % total;
-    slides.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  // ===== SLIDER 2 =====
-  let index1 = 0;
-  const slides1 = document.getElementById("slides1");
-  const total1 = slides1.children.length;
-
-  function moveSlide1(step){
-    index1 = (index1 + step + total1) % total1;
-    slides1.style.transform = `translateX(-${index1 * 100}%)`;
-  }
-
-  // ===== SLIDER 3 =====
-  let index2 = 0;
-  const slides2 = document.getElementById("slides2");
-  const total2 = slides2.children.length;
-
-  function moveSlide2(step){
-    index2 = (index2 + step + total2) % total2;
-    slides2.style.transform = `translateX(-${index2 * 100}%)`;
-  }
-
-  // ===== CONTADOR =====
-  const fechaInicio = new Date("2026-03-13T00:00:00");
-
-  function actualizarTiempo(){
-    const ahora = new Date();
-    const diff = ahora - fechaInicio;
-
-    document.getElementById("dias").innerText =
-      Math.floor(diff / (1000*60*60*24));
-
-    document.getElementById("horas").innerText =
-      Math.floor((diff / (1000*60*60)) % 24);
-
-    document.getElementById("minutos").innerText =
-      Math.floor((diff / (1000*60)) % 60);
-
-    document.getElementById("segundos").innerText =
-      Math.floor((diff / 1000) % 60);
-  }
-
-  setInterval(actualizarTiempo,1000);
-  actualizarTiempo();
-
-  // ===== MUSICA =====
-  const musicBtn = document.getElementById("musicBtn");
-  const bgMusic = document.getElementById("bgMusic");
-  let musicOn = false;
-
-  musicBtn.addEventListener("click", async () => {
-    try {
-      if (!musicOn) {
-        await bgMusic.play();
-        musicBtn.textContent = "⏸ Pausar música";
-        musicOn = true;
-      } else {
-        bgMusic.pause();
-        musicBtn.textContent = "▶ Reproducir música";
-        musicOn = false;
-      }
-    } catch (e) {
-      alert("No se pudo reproducir la música");
-    }
-  });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>

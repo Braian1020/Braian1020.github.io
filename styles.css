@@ -1,0 +1,503 @@
+/* PALETA DE COLORES PRINCIPAL: Romántica, Premium (Rosas, Rojos, Blanco, Oro) */
+:root {
+    --primary-rose: #ffafcc;
+    --dark-rose: #ff85a1;
+    --romantic-red: #e63946;
+    --soft-white: #fff0f3;
+    --gold-accent: #ffb703;
+    --dark-text: #4a1525;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--soft-white);
+    color: var(--dark-text);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-logo {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Clases de utilidad ocultar/mostrar */
+.hidden { display: none !important; }
+.active { display: flex !important; }
+
+/* --- LLUVIA DE CORAZONES --- */
+#heart-rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    color: var(--romantic-red);
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(105vh) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* --- 1. PANTALLA DE BIENVENIDA --- */
+#welcome-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb70322 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+}
+
+.welcome-content h1 {
+    font-size: 5rem;
+    color: var(--romantic-red);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.heart-pulse {
+    display: inline-block;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.btn-romantic {
+    background-color: var(--romantic-red);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s ease;}
+
+.btn-romantic:hover {
+    transform: scale(1.05);
+    background-color: var(--dark-rose);
+    box-shadow: 0 6px 20px rgba(255, 133, 161, 0.6);}
+
+/* --- NAVEGACIÓN --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.nav-logo { font-size: 2rem; color: var(--romantic-red); }
+.nav-links { display: flex; list-style: none; }
+.nav-links li { margin-left: 20px; }
+.nav-links a { text-decoration: none; color: var(--dark-text); font-weight: 600; transition: color 0.3s; }
+.nav-links a:hover { color: var(--romantic-red); }
+
+/* --- SECCIONES GENERALES --- */
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    color: var(--romantic-red);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* --- ANIMACIÓN SCROLL (FADE IN) --- */
+.scroll-anim {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-anim.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 2. CONTADOR DE TIEMPO --- */
+.counter-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.counter-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 100px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--primary-rose);
+}
+
+.counter-box span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--romantic-red);
+}
+
+/* --- 3. LÍNEA DE TIEMPO --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--primary-rose);
+    top: 0; bottom: 0; left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 20px 40px; /* Aumentamos padding vertical para que no se encimen */
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.left { 
+    left: 0; 
+    text-align: right; 
+}
+
+.right { 
+    left: 50%; 
+    text-align: left; 
+}
+
+/* Ajuste para evitar colisiones extrañas en el bloque del contenido */
+.timeline-content {
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: inline-block; /* Evita que se estire innecesariamente */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- 4. ÁLBUM POR MESES --- */
+.month-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.month-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 280px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+}
+
+.month-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--dark-rose);
+    box-shadow: 0 12px 25px rgba(255, 133, 161, 0.2);
+}
+
+.card-heart {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+/* LIGHTBOX & CAROUSEL */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(74, 21, 37, 0.85);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-lightbox, .close-modal {
+    position: absolute;
+    top: 15px; right: 25px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: white;
+    z-index: 2100;
+}
+.close-modal { color: var(--dark-text); }
+
+.letter-box {
+    background: #fff5f7;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--romantic-red);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.divider { border: 0; height: 1px; background: #e0e0e0; margin: 20px 0; }
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-slide img:hover { transform: scale(1.08); }
+.carousel-btn {
+    background: rgba(0,0,0,0.5);
+    color: white; border: none; padding: 10px;
+    cursor: pointer; position: absolute; z-index: 10;
+}
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+/* --- 5. REPRODUCTOR DE MÚSICA --- */
+.player-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--primary-rose);
+}
+
+.progress-container {
+    background: #eee;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 15px 0;
+    height: 6px;
+    width: 100%;
+}
+
+.progress-bar {
+    background: var(--romantic-red);
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.player-btn {
+    background: none; border: none; font-size: 1.5rem;
+    color: var(--dark-text); cursor: pointer; transition: color 0.2s;
+}
+
+.player-btn:hover { color: var(--romantic-red); }
+.play-main { font-size: 2.2rem; color: var(--romantic-red); }
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* --- 6. CARTAS SORPRESA --- */
+.envelopes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.envelope-wrapper {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 160px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.envelope-wrapper:hover { transform: translateY(-5px) rotate(3deg); }
+.envelope-icon { font-size: 3.5rem; color: var(--dark-rose); }
+
+/* MODAL SOBRES */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5); z-index: 2500;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.modal-content {
+    background: #fff; padding: 40px; border-radius: 15px;
+    width: 80%; max-width: 450px; position: relative;
+}
+
+.letter-paper {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    color: #333;
+    text-align: center;
+}
+
+/* --- 7. MINIJUEGOS --- */
+.games-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.game-card {
+    background: white; border-radius: 20px; padding: 30px;
+    width: 340px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    position: relative; min-height: 250px;
+}
+
+.game-buttons-space {
+    margin-top: 30px; position: relative; height: 80px;
+}
+
+.game-btn {
+    padding: 10px 25px; font-weight: bold; border-radius: 25px;
+    border: none; cursor: pointer; font-size: 1rem; transition: transform 0.1s;
+}
+
+.game-btn.yes { background-color: var(--romantic-red); color: white; }
+.game-btn.no { background-color: #ccc; color: #333; position: absolute; }
+
+.meme-img { max-width: 100%; border-radius: 10px; margin-top: 15px; }
+
+/* --- 8. MURO DE RECUERDOS --- */
+.muro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px; margin-top: 30px;
+}
+
+.muro-card {
+    background: white; border-radius: 15px; overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left;
+}
+
+.muro-card img { width: 100%; height: 200px; object-fit: cover; }
+.muro-info { padding: 15px; }
+.muro-date { font-size: 0.85rem; color: var(--dark-rose); font-weight: bold; }
+
+/* --- 9. MENSAJE FINAL --- */
+.final-box {
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+    padding: 50px 30px; border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    min-height: 200px; display: flex; flex-direction: column; justify-content: center;
+}
+
+#typewriter-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem; line-height: 1.6; color: var(--dark-text);
+    white-space: pre-line;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; padding: 15px; }
+    .nav-links { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+    .nav-links li { margin: 5px 10px; }
+    .timeline::after { left: 20px; }
+    .timeline-item { width: 100%; text-align: left; padding-left: 50px; }
+    .timeline-item::after { left: 8px; }
+    .left { left: 0; }
+    .right { left: 0; }
+    .welcome-content h1 { font-size: 3.2rem; }
+}
