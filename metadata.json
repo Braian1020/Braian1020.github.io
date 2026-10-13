@@ -1,0 +1,6 @@
+{
+  "name": "Sara y Pool - Nuestra Historia",
+  "description": "Un hermoso álbum privado de fotos y recuerdos para Sara y Pool con galería de fotos, historia de amor y música.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
